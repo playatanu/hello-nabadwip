@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "417503569220",
+    "project_id": "nabadwip-1b499",
+    "storage_bucket": "nabadwip-1b499.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417503569220:android:803cf41fcaf6cea7bce311",
+        "android_client_info": {
+          "package_name": "com.playatanu.nabadwip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417503569220-0opadnoav2l8m3og5p6dtkfhg16kplev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKGU5E5DMegi3Z_0801lxSZ4-JZoXeduw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "417503569220-0opadnoav2l8m3og5p6dtkfhg16kplev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
