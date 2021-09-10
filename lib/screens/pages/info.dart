@@ -105,39 +105,30 @@ class _FullListItemBuildState extends State<FullListItemBuild> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: InkWell(
-        onTap: () {
-          (diss == null)
-              ? Text('data')
-              : Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Detels(
-                            name: widget.data['name'],
-                            dis: diss,
-                            km: km,
-                            address: widget.data['add'],
-                            phone: widget.data['phone'],
-                            website: widget.data['website'],
-                          )),
-                );
-        },
-        child: ListTile(
-          title: Text(widget.data['name']),
-          subtitle: Text(widget.data['add']),
-          trailing: (km == true)
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [Text('$diss km')])
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text('$diss metter'),
-                  ],
-                ),
-        ),
-      ),
-    );
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
+          onTap: () {
+            (diss == null)
+                ? Text('data')
+                : Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Detels(
+                              name: widget.data['name'],
+                              dis: diss,
+                              km: km,
+                              address: widget.data['add'],
+                              phone: widget.data['phone'],
+                              website: widget.data['website'],
+                              lat:widget.data['lat'],
+                              lng: widget.data['lng'],
+                            )),
+                  );
+          },
+          child: ListTile(
+              title: Text(widget.data['name']),
+              subtitle: Text(widget.data['add']),
+              trailing: (km == true) ? Text('$diss km') : Text('$diss metter')),
+        ));
   }
 }

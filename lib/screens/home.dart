@@ -82,36 +82,51 @@ class _MainHomeState extends State<MainHome> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text('Top Places', style: bigtext),
               ),
-              Container(
-                width: double.infinity,
-                height: 150,
-                child: StreamBuilder<QuerySnapshot>(
-                  stream:
-                      FirebaseFirestore.instance.collection('tag').snapshots(),
-                  builder: (context, snapshot) {
-                    return GridView.count(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 4.0,
-                      mainAxisSpacing: 8.0,
-                      children:
-                          List.generate(snapshot.data!.docs.length, (index) {
-                        DocumentSnapshot data = snapshot.data!.docs[index];
-
-                        return Center(
-                          child: SelectCard(
-                            data: data,
-                          ),
-                        );
-                      }),
-                    );
-                  },
-                ),
+              TopPlaces(tag: 'tag'),
+              TopPlaces(
+                tag: 'tag',
               ),
+              TopPlaces(tag: 'tag'),
             ],
           ),
         ),
       ),
       backgroundColor: Color(0xFFE7E8F2),
+    );
+  }
+}
+
+class TopPlaces extends StatelessWidget {
+  const TopPlaces({
+    Key? key,
+    required this.tag,
+  }) : super(key: key);
+
+  final String tag;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 200,
+      child: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance.collection(tag).snapshots(),
+        builder: (context, snapshot) {
+          return GridView.count(
+            mainAxisSpacing: 4.0,
+            scrollDirection: Axis.horizontal,
+            crossAxisSpacing: 8.0,
+            crossAxisCount: 1,
+            children: List.generate(snapshot.data!.docs.length, (index) {
+              DocumentSnapshot data = snapshot.data!.docs[index];
+
+              return SelectCard(
+                data: data,
+              );
+            }),
+          );
+        },
+      ),
     );
   }
 }

@@ -57,7 +57,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      /*  bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -85,7 +85,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         backgroundColor: bodycolor,
         onTap: _onItemTapped,
         unselectedItemColor: blue,
-      ),
+      ),*/
     );
   }
 }
