@@ -66,7 +66,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.near_me),
-            label: 'Nearest',
+            label: 'Places',
             backgroundColor: bodycolor,
           ),
           BottomNavigationBarItem(

@@ -5,6 +5,8 @@ import 'package:nabadwip/widgets/customslider.dart';
 import 'package:nabadwip/widgets/minicatagory.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'pages/info.dart';
+
 // ignore: must_be_immutable
 class MainHome extends StatefulWidget {
   const MainHome({Key? key}) : super(key: key);
@@ -14,29 +16,9 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
-  List<String> images = [
-    "https://i.pinimg.com/474x/f3/45/9e/f3459ea6ac08990c954418fb118228c0.jpg",
-    "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-    "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-    "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png"
-  ];
-
   @override
-  void setState(VoidCallback fn) {
-    FirebaseFirestore.instance.collection("places").get().then((querySnapshot) {
-      querySnapshot.docs.forEach((result) {
-        print(result.data());
-      });
-    });
-    super.setState(fn);
-  }
-
-  void fire() {
-    FirebaseFirestore.instance.collection("places").get().then((querySnapshot) {
-      querySnapshot.docs.forEach((result) {
-        print(result.data());
-      });
-    });
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -77,11 +59,7 @@ class _MainHomeState extends State<MainHome> {
               ),
               Text(
                 'Nabadwip',
-                style: TextStyle(
-                    fontSize: 12,
-                    color: Color(
-                      (0xFF201F41),
-                    )),
+                style: appbarminitext,
               ),
             ],
           ),
@@ -137,10 +115,6 @@ class _MainHomeState extends State<MainHome> {
     );
   }
 }
-/*
- itemCount: snapshot.data!.docs.length,
-                        itemBuilder: (context, index) {
-                          DocumentSnapshot data = snapshot.data!.docs[index];*/
 
 class SelectCard extends StatelessWidget {
   const SelectCard({Key? key, required this.data});
@@ -150,35 +124,47 @@ class SelectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(data['img']),
-                  fit: BoxFit.cover,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Info(
+                      tag: data['tag'],
+                    )),
+          );
+        },
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(data['img']),
+                    fit: BoxFit.cover,
+                  ),
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8))),
+              height: 100,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: blue,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(8),
+                      bottomRight: Radius.circular(8))),
+              height: 40,
+              child: Container(
+                  child: Center(
+                child: Text(
+                  data['name'],
+                  style: minitext,
                 ),
-                color: Colors.black12,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8), topRight: Radius.circular(8))),
-            height: 100,
-          ),
-          Container(
-            decoration: BoxDecoration(
-                color: blue,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(8),
-                    bottomRight: Radius.circular(8))),
-            height: 40,
-            child: Container(
-                child: Center(
-              child: Text(
-                data['name'],
-                style: minitext,
-              ),
-            )),
-          ),
-        ],
+              )),
+            ),
+          ],
+        ),
       ),
     );
   }
